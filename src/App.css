@@ -1,0 +1,105 @@
+
+
+
+body{
+font-family : 'Open Sans', sans-serif;
+color:#FFFFFF;
+background-image :url("https://images.unsplash.com/photo-1503049555010-f8616ee8f0f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1185&q=80");
+background-repeat: no-repeat;
+background-size: 100%;
+min-height: 100%;
+}
+
+
+
+
+
+.container {
+  width: 450px;
+  height: 45px;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+.task{
+  font-size:24;
+
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+h2{
+  font-size: 120px;
+}
+h1{
+  font-family: "Raleway", sans-serif
+}
+
+.focuses .prompt input {
+  width: 100%;
+  padding-top: 4px;
+  display: block;
+  background: 0;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-weight: 500;
+  outline: 0;
+  text-align: center;
+  transition: border-color .2s ease;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2.2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+input[type="radio"] {
+  margin-top: -1px;
+  vertical-align: middle;
+}
+label{
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+   
+}
+form button {
+  margin-right:100px;
+}
+
+.home-intro {
+  background-image: url("https://unsplash.imgix.net/photo-1428278953961-a8bc45e05f72?fit=crop&amp;fm=jpg&amp;h=500&amp;q=75&amp;w=1050");
+  background-size: cover;
+  height: 100%;
+  color: $white;
+  text-align: center;
+}
+body, html{
+  height: 100%;
+}
+
+
+
+
