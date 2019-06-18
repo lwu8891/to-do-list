@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import firebase from './firebase.js';
-
+import firebase, { auth, provider } from './firebase.js';
 
 
 
@@ -12,7 +11,7 @@ class App extends Component {
     this.state = {
       task: '',
       items : [],
-      user: '',
+      user: null,
       date: new Date().toLocaleDateString(),
       open:false
 
@@ -20,6 +19,8 @@ class App extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.login = this.login.bind(this); 
+    this.logout = this.logout.bind(this);
     
   }
 
@@ -35,6 +36,7 @@ class App extends Component {
    
     const item = {
       title: this.state.task,
+      user: this.state.user.displayName || this.state.user.email
     }
     itemsRef.push(item);
     this.setState({
@@ -45,6 +47,24 @@ class App extends Component {
     this.setState({
       [e.target.user]:e.target.value
     });
+  }
+
+  logout() {
+    auth.signOut()
+    .then(() => {
+      this.setState({
+        user: null
+      });
+    });
+  }
+  login() {
+    auth.signInWithPopup(provider) 
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
   }
 
 
@@ -70,12 +90,18 @@ class App extends Component {
         });
    
       });
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+        } 
+      });
   }
 
   removeItem(itemID){
     const itemsRef = firebase.database().ref(`/items/${itemID}`);
     itemsRef.remove();
   }
+
 
   render(){
     
@@ -85,25 +111,25 @@ class App extends Component {
       var m = date.getMinutes(); // 0 - 59
       var s = date.getSeconds(); // 0 - 59
       var session = "AM";
-      var greeting = "Good Morning";
+      var greeting = "Good Morning..";
       
       if(h === 0){
           h = 12;
       }
       
-      if( 18 > h > 12){
+      if( 12 < h < 18){
           h = h - 12;
           session = "PM";
           greeting = "Good Afternoon";
       }
       if( h > 18){
         h = h-12;
-        greeting = "Good Evening";
+        greeting = "Good Evening..";
         session = "PM"
       }
      
       
-      h = (h < 10) ? "0" + h : h;
+      h = (h < 10) ? "  0" + h : h;
       m = (m < 10) ? "0" + m : m;
       s = (s < 10) ? "0" + s : s;
       
@@ -117,47 +143,75 @@ class App extends Component {
   }
   
   showTime();
+
+  
   
     return(
-      <body>
       
-          <h2> {this.state.date} </h2>
-      <div>
-        
-        <form inline onSubmit = {this.handleSubmit}>
-        <br></br>
-        <h1> What is your goal today? </h1>
-        <br></br>
-        <input className = "container" type = "text"  name = "task" placeholder = "Please insert a task.." onChange =  {this.handleChange} value = {this.state.task}/>
-        <button class= "btn btn-small btn-gray btn-radius" > add task </button>   
-        </form>
-        <br></br>
-      {this.state.items.map((item) =>{
-        return(
-          <div class = "fade-in form-check">
-           <h1>
-           {item.title}
-           </h1>
-           <button class ="btn btn-small btn-gray btn-radius" onClick = {() => this.removeItem(item.id)}> remove </button>
-           
-            
-            </div>
-        )
-      })}
-  
-      </div >
-      
-   
-  
-      </body>
-
-     
-    );
-
-
-
+        <body>
+          
+        <nav class="navbar navbar-expand-sm bg-dark">
+  {this.state.user ?
+    <button class = "btn btn-small btn-gray btn-radius" onClick={this.logout}>Log Out</button>                
+    :
+    <button class = "btn btn-small btn-gray btn-radius" onClick={this.login}>Log In via Google</button>              
   }
+</nav>
+            <h2> {this.state.date} </h2>
+        <div>
+          
+          <form inline onSubmit = {this.handleSubmit}>
+          <br></br>
+          <div class = "centerTitle"> 
+          
+          <h1>What is your goal today? </h1>
+           </div> 
+          
+          
+          <br></br>
 
-}
+          
+          <input className = "container centerContainer" type = "text"  name = "task" placeholder = "Please insert a task.." onChange =  {this.handleChange} value = {this.state.task}/>
+          <button class= "btn btn-small btn-gray btn-radius centerButton" > add task </button>   
+          </form>
+          <br></br>
+         
+          
+        {this.state.items.map((item) =>{
+          return(
+            
+            
+            <div class = "fade-in form-check">
+             <h1 class = "centerTask">
+         
+             {item.title}
+             </h1>
+             
+             <button class =" btn btn-small btn-gray btn-radius centerRemove" onClick = {() => this.removeItem(item.id)}> remove </button>
+              </div>
+              
+          )
+        })}
+    
+        </div >
+        
+     
+        
+        </body>
+        
+  
+       
+      );
+  
+  
+  
+    }
+  
+  }
+  
+  export default App;
+   
 
-export default App;
+
+
+ 

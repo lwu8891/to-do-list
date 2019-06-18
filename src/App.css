@@ -7,26 +7,20 @@ color:#FFFFFF;
 background-image :url("https://images.unsplash.com/photo-1503049555010-f8616ee8f0f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1185&q=80");
 background-repeat: no-repeat;
 background-size: 100%;
+height: 100%;
+
 }
 .clock {
   position: absolute;
-  top: 0px;
+  top: 60px;
   right:0px;
   color: #ffffff;
   font-size: 60px;
   font-family: "Comic-Sans", sans-serif;
-  letter-spacing: 7px;
+  letter-spacing: 2px;
  
  
 
-
-}
-.greeting{
-  position:absolute;
-  top:100px;
-  right:0px;
-  font-size:60px;
-  font-family: "Comic-Sans", sans-serif;
 
 }
 
@@ -40,27 +34,85 @@ background-size: 100%;
   background: white;
   border: 1px solid gray;
   border-radius: 20px;
+  
 }
 
 
-.center{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
+.center {
+  position: relative;
+  width: 250px;
+  height: 50px;
+  top: 80%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -50px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.centerTitle {
+  position: relative;
+  width: 1000px;
+  height: 50px;
+  top: 80%;
+  left: 40%;
+  margin-top: -25px;
+  margin-left: -50px;
+  font-family: "Open Sans", sans-serif;
+  font-size:40px;
+}
+.centerContainer{
+
+  position: relative;
+  width: 500px;
+  height: 40px;
+  top: 100%;
+  left: 40%;
+  margin-top: -25px;
+  margin-left: -50px;
+  font-family: "Open Sans", sans-serif;
+  font-size:20px;
+}
+.centerButton{
+  position: relative;
+  width: 300px;
+  height: 40px;
+  line-height: 5;
+  right: -38%;
+  margin-top: -25px;
+  margin-left: -50px;
+  font-family: "Open Sans", sans-serif;
+}
+.centerTask{
+  position: relative;
+  width: 1000px;
+  height: 60px;
+  right: -47%;
+  top:20px;
+  line-height:3;
+  margin-top: -25px;
+  margin-left: -50px;
+  font-size:30px;
+}
+.centerRemove{
+  position: relative;
+  width: 70px;
+  height:40px;
+  right: 0%;
+  margin-left: 300px;
+  margin-top: 35px;
+ 
 }
 
 h2{
   align-self: center;
   font-size: 60px;
   font-family: "Open Sans", sans-serif;
-  letter-spacing: 7px;
+  letter-spacing: 2px;
 }
 h1{
   font-family: "Open Sans", sans-serif;
-  vertical-align: middle
+  vertical-align: middle;
+  display: inline-block ;
 
 }
 .hidden {
@@ -110,7 +162,6 @@ label{
   width: 200px;
   padding: 8px;
   color: #fff;
-  border: 2px solid #fff;
   text-align: center;
   outline: none;
   text-decoration: none;
@@ -141,8 +192,9 @@ a.btn,.btn {
   text-decoration: none;
   vertical-align:middle;  
 	font-family: inherit;
-	font-weight: 300;
-	letter-spacing: 1px;
+  font-weight: 300;
+
+	letter-spacing: 2px;
   border: 0px solid;
 	transition: all 0.2s ease;
 	box-sizing: border-box;
@@ -150,16 +202,58 @@ a.btn,.btn {
   
 }
 .btn-radius {
-  border-radius: 3px;
+  border-radius: 1px;
 }
 .btn-gray {
-	color: #808080;
+	color: #FFFFFF;
 	border-color: #808080;
 }
 .btn-small {
 	font-size: 0.8125em;
 	padding: 0.4125em 1.25em;
 } 
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
 
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.centerGreeting{
+  position: absolute;
+  width: 1000px;
+  height: 50px;
+  top: 100%;
+  left: 50%;
+  margin-top: -870px;
+  margin-left: -250px;
+  font-size:60px;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
 
